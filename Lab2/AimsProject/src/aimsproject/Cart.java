@@ -1,0 +1,38 @@
+package aimsproject;
+
+public class Cart {
+	public static final int MAX_NUMBERS_ORDERED = 20;
+	private DigitalVideoDisc itemsOrdered[] = 
+			new DigitalVideoDisc[MAX_NUMBERS_ORDERED];
+	private int qtyOrdered;
+	
+	public void addDigitalVideoDisc(DigitalVideoDisc disc) {
+		if (qtyOrdered == 20) {
+			System.out.println("The cart is almost full");
+			return;
+		}
+		
+		itemsOrdered[qtyOrdered] = disc;
+		qtyOrdered += 1;
+		
+		System.out.println("The disc has been added");
+	}
+	
+	public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
+		for (int i = 0; i < qtyOrdered; ++i)
+			if (itemsOrdered[i] == disc) {
+				for (int j = i; j < qtyOrdered - 1; ++j)
+					itemsOrdered[i] = itemsOrdered[i + 1];
+				
+				System.out.println("The disc has been removed");
+				return;
+			}
+	}
+	
+	public float totalCost() {
+		float total_cost = 0;
+		for (int i = 0; i < qtyOrdered; ++i) 
+			total_cost += itemsOrdered[i].getCost();
+		return total_cost;
+	}
+}
