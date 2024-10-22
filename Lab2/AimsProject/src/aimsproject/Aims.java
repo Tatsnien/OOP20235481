@@ -14,6 +14,7 @@ public class Aims {
 						"Roger Allers", 
 						87,
 						19.95f);
+		anOrder.addDigitalVideoDisc(dvd1);
 		
 		DigitalVideoDisc dvd2 = 
 				new DigitalVideoDisc(
@@ -22,7 +23,18 @@ public class Aims {
 						"George Lucas", 
 						87,
 						24.95f);
-
+		anOrder.addDigitalVideoDisc(dvd2);
+		
+		DigitalVideoDisc dvd3 = 
+				new DigitalVideoDisc(
+						"Aladin", 
+						"Animation", 
+						18.99f);
+		anOrder.addDigitalVideoDisc(dvd3);
+		
+		//Print total cost of the items in the cart
+		System.out.println("Total Cost is: ");
+		System.out.println(anOrder.totalCost());
 	}
 
 }
