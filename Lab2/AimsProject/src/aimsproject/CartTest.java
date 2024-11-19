@@ -1,13 +1,12 @@
 package aimsproject;
-import java.util.*;
 
-public class Aims {
+public class CartTest {
 
 	public static void main(String[] args) {
-		// Create a new cart
-		Cart anOrder = new Cart();
+		//Create a new class
+		Cart cart = new Cart();
 		
-		// Create new DVD objects and add them to the cart
+		//Create new dvd objects and add them to the cart
 		DigitalVideoDisc dvd1 = 
 				new DigitalVideoDisc(
 						"The Lion King", 
@@ -15,7 +14,7 @@ public class Aims {
 						"Roger Allers", 
 						87,
 						19.95f);
-		anOrder.addDigitalVideoDisc(dvd1);
+		cart.addDigitalVideoDisc(dvd1);
 		
 		DigitalVideoDisc dvd2 = 
 				new DigitalVideoDisc(
@@ -24,18 +23,22 @@ public class Aims {
 						"George Lucas", 
 						87,
 						24.95f);
-		anOrder.addDigitalVideoDisc(dvd2);
+		cart.addDigitalVideoDisc(dvd2);
 		
 		DigitalVideoDisc dvd3 = 
 				new DigitalVideoDisc(
 						"Aladin", 
 						"Animation", 
 						18.99f);
-		anOrder.addDigitalVideoDisc(dvd3);
+		cart.addDigitalVideoDisc(dvd3);
 		
-		//Print total cost of the items in the cart
-		System.out.println("Total Cost is: ");
-		System.out.println(anOrder.totalCost());
+		//Test the print method
+		cart.print();
+		
+		cart.search(2);
+		cart.search("Aladin");
+		cart.search("Zoo");
+
 	}
 
 }
