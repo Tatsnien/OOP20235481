@@ -1,5 +1,4 @@
 package aimsproject;
-import java.util.*;
 
 public class Aims {
 
