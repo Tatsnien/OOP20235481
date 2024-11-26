@@ -1,8 +1,1 @@
-/**
- * 
- */
-/**
- * 
- */
-module OtherProjects {
-}
+module OtherProjects {}

@@ -53,9 +53,12 @@ public class Cart {
 				for (int j = i; j < qtyOrdered - 1; ++j)
 					itemsOrdered[i] = itemsOrdered[i + 1];
 				
+				qtyOrdered -= 1;
 				System.out.println("The disc has been removed");
 				return;
 			}
+		
+		System.out.println("Disc not found!");
 	}
 	
 	public float totalCost() {
@@ -75,7 +78,7 @@ public class Cart {
 		System.out.println("Total cost: " + totalCost() + " $");
 		System.out.println("**************************************************");
 	}
-
+	
 	public void search(int id) {
 		int cnt = 0;
 		for (int i = 0; i < qtyOrdered; ++i)
@@ -97,4 +100,5 @@ public class Cart {
 		if (cnt == 0)
 			System.out.println("No result found!");
 	}
+	
 }
