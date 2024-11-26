@@ -1,0 +1,23 @@
+Ex 6.1:
+a) If users choose "Cancel", the dialog will display "You've chosen: No".
+b) 
+- To customize the options to only "Yes" and "No", get option by the below code:
+
+int option = JOptionPane.showConfirmDialog(null, 
+				"Do you want to change to the first class ticket?",
+				"Ticket change confirmation",
+				JOptionPane.YES_NO_OPTION,
+				JOptionPane.QUESTION_MESSAGE);
+
+- To customize the options to only "I do" and "I don't", get option by the below code:
+
+String[] options = {"I do", "I don't"};
+		
+int option = JOptionPane.showOptionDialog(null, 
+				"Do you want to change to the first class ticket?",
+				"Ticket confirmation",
+				JOptionPane.DEFAULT_OPTION,
+				JOptionPane.INFORMATION_MESSAGE,
+				null,
+				options,
+				options[0]);
