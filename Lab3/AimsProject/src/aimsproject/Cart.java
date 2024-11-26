@@ -77,4 +77,26 @@ public class Cart {
 		System.out.println("**************************************************");
 	}
 	
+	public void search(int id) {
+		int cnt = 0;
+		for (int i = 0; i < qtyOrdered; ++i)
+			if (itemsOrdered[i].isMatch(id)) {
+				cnt += 1;
+				System.out.println(cnt + ". " + itemsOrdered[i].toString());
+			}
+		if (cnt == 0)
+			System.out.println("No result found!");
+	}
+	
+	public void search(String title) {
+		int cnt = 0;
+		for (int i = 0; i < qtyOrdered; ++i)
+			if (itemsOrdered[i].isMatch(title)) {
+				cnt += 1;
+				System.out.println(cnt + ". " + itemsOrdered[i].toString());
+			}
+		if (cnt == 0)
+			System.out.println("No result found!");
+	}
+	
 }
