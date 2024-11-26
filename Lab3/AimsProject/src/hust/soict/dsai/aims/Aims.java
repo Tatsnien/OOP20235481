@@ -1,7 +1,7 @@
 package hust.soict.dsai.aims;
-
-import hust.soict.dsai.aims.cart.Cart;
-import hust.soict.dsai.aims.disc.DigitalVideoDisc;
+import hust.soict.dsai.aims.cart.*;
+import hust.soict.dsai.aims.disc.*;
+import java.util.*;
 
 public class Aims {
 
