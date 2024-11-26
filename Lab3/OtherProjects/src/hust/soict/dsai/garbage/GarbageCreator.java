@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package hust.soict.dsai.garbage;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -37,3 +38,44 @@ public class GarbageCreator {
         System.out.println(endTime - startTime);
     }
 }
+=======
+package hust.soict.dsai.garbage;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+import java.nio.file.Files; 
+import java.nio.file.Paths; 
+import java.io.IOException; 
+import java.nio.file.NoSuchFileException; 
+import java.nio.file.Path;
+
+public class GarbageCreator {
+    public static void main(String[] args) {
+        String filename = "src/hust/soict/dsai/garbage/test.txt";
+        byte[] inputBytes = { 0 };
+        long startTime, endTime;
+        
+        try { 
+        	Path filePath = Paths.get(filename); 
+        	inputBytes = Files.readAllBytes(filePath); 
+        } 
+        catch (IOException e) {
+        	return;
+        }
+        startTime = System.currentTimeMillis();
+        
+//        String outputString = "";
+//        for (byte b : inputBytes) {
+//        	outputString += (char)b;
+//        }
+        
+        StringBuilder outputStringBuilder = new StringBuilder();
+        for (byte b : inputBytes) {
+        	outputStringBuilder.append((char)b);
+        }
+        
+        endTime = System.currentTimeMillis();
+        System.out.println(endTime - startTime);
+    }
+}
+>>>>>>> 3a04ccefcf664d76ffcc06b6a47a57043f566a1a
