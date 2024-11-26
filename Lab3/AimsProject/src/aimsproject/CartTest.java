@@ -34,6 +34,10 @@ public class CartTest {
 		
 		//Test the print method
 		cart.print();
+		
+		cart.search(2);
+		cart.search("Aladin");
+		cart.search("Zoo");
 	}
 
 }
