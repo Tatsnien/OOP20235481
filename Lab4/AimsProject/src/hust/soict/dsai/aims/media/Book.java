@@ -2,12 +2,8 @@ package hust.soict.dsai.aims.media;
 import java.util.*;
 
 public class Book extends Media {
+	
 	private List<String> authors = new ArrayList<String>();
-
-	public Book() {
-				
-	}
-
 	public List<String> getAuthors() {
 		return authors;
 	}
