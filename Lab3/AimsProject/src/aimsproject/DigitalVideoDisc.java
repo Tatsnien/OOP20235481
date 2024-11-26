@@ -64,4 +64,29 @@ public class DigitalVideoDisc {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	
+	public String toString() {
+		String res = "DVD - ";
+		res += title + " - ";
+		res += category + " - ";
+		res += director + " - ";
+		res += length + ": ";
+		res += cost + " $";
+		return res;
+	}
+	
+	public boolean isMatch(int id) {
+		return this.id == id;
+	}
+	
+	public boolean isMatch(String title) {
+		String s1 = title.toLowerCase();
+		String s2 = this.title.toLowerCase();
+		for (int i = 0; i < s1.length(); ++i)
+			for (int j = 0; j < s2.length(); ++j)
+				if (s1.charAt(i) == s2.charAt(j))
+					return true;
+		return false;
+	}
+	
 }
