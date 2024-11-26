@@ -20,8 +20,7 @@ public class DigitalVideoDisc extends Disc {
 	}
 	
 	public DigitalVideoDisc(String title, String category, String director, float cost){
-		super();
-		setDirector(director);
+		super(director);
 		setCategory(category);
 		setTitle(title);
 		setCost(cost);
@@ -30,9 +29,7 @@ public class DigitalVideoDisc extends Disc {
 	}
 	
 	public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
-		super();
-		setDirector(director);
-		setLength(length);
+		super(length, director);
 		setCategory(category);
 		setTitle(title);
 		setCost(cost);
