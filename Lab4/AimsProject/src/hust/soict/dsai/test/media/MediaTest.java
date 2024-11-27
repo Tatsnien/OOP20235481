@@ -61,11 +61,47 @@ public class MediaTest {
 						18.99f);
 		System.out.println("dvd3 = " + dvd3.getId());
 	}
+	
+	public static void MediaEqualityTest() {
+		DigitalVideoDisc dvd1 = 
+				new DigitalVideoDisc(
+						"Star Wars", 
+						"Science Fiction", 
+						"George Lucas", 
+						87,
+						24.95f);
+		DigitalVideoDisc dvd2 = 
+				new DigitalVideoDisc(
+						"Aladin", 
+						"Animation", 
+						18.99f);
+		Book book = new Book("Aladin");
+		String s = "Aladin";
+		Track track1 = new Track("Aladin", 1);
+		Track track2 = new Track("Aladin", 1);
+		if (dvd1.equals(book))
+			System.out.println("dvd1 == book");
+		if (book.equals(dvd1))
+			System.out.println("book == dvd1");
+		if (dvd2.equals(book))
+			System.out.println("dvd2 == book");
+		if (book.equals(dvd2))
+			System.out.println("book == dvd2");
+		if (book.equals(s))
+			System.out.println("book == s");
+		if (track1.equals(book))
+			System.out.println("track1 == book");
+		if (book.equals(track1))
+			System.out.println("book == track1");
+		if (track1.equals(track2))
+			System.out.println("track1 == track2");
+	}
 
 	public static void main(String[] args) {
-		CompactDiscTest();
-		BookTest();
-		DVDTest();
+//		CompactDiscTest();
+//		BookTest();
+//		DVDTest();
+		MediaEqualityTest();
 	}
 
 }

@@ -1,0 +1,4 @@
+Q: If the passing object is not an instance of Media, what happens?
+A:
+- Case 1: passing object is an instance of a child class of Media -> the method functions normally because the object is still be considered an instance of Media.
+- Case 2: passing object is not an instance of a child class of Media -> the method will catch an error at casting stage, therefor return false.

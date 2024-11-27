@@ -27,9 +27,9 @@ public class Book extends Media {
 	}
 	
 	public void removeAuthor(String authorName) {
-		for (int i = 0; i < authors.size(); ++i) 
-			if (authors.get(i).equals(authorName)) {
-				authors.remove(i);
+		for (String author : authors) 
+			if (author.equals(authorName)) {
+				authors.remove(author);
 				System.out.println("Author \"" + authorName + "\" removed!");
 				return;
 			}

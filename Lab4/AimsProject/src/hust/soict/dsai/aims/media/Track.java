@@ -9,6 +9,19 @@ public class Track implements Playable{
 		this.title = title;
 		this.length = length;		
 	}
+	
+	public boolean equals(Object obj) {
+		if (obj == null)
+			return false;
+		try {
+			Track track = (Track) obj;
+			return track.getTitle().equals(title) &&
+					track.getLength() == length;
+		}
+		catch(Exception e) {
+			return false;
+		}
+	}
 
 	public String getTitle() {
 		return title;
