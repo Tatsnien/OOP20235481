@@ -4,11 +4,11 @@ import hust.soict.dsai.aims.media.*;
 import java.util.*;
 
 public class Cart {
-	public static final int MAX_NUMBERS_ORDERED = 20;
+	private static final int MAX_NUMBERS_ORDERED = 20;
 	private List<Media> itemsOrdered = new ArrayList<Media>();
 	
 	public void addMedia(Media media) {
-		if (itemsOrdered.size() == 20) {
+		if (itemsOrdered.size() == MAX_NUMBERS_ORDERED) {
 			System.out.println("The cart is almost full");
 			return;
 		}
@@ -21,7 +21,7 @@ public class Cart {
 	public void addMedia(Media[] mediaList) {
 		int n = mediaList.length;
 		
-		if (itemsOrdered.size() + n > 20) {
+		if (itemsOrdered.size() + n > MAX_NUMBERS_ORDERED) {
 			System.out.println("The cart is almost full");
 			return;
 		}
