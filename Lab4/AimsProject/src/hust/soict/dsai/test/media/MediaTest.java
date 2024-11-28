@@ -1,6 +1,7 @@
 package hust.soict.dsai.test.media;
 
 import hust.soict.dsai.aims.media.*;
+import java.util.*;
 
 public class MediaTest {
 	
@@ -96,12 +97,50 @@ public class MediaTest {
 		if (track1.equals(track2))
 			System.out.println("track1 == track2");
 	}
+	
+	public static void MediaToString() {
+		List<Media> mediae = new ArrayList<Media>();
+		
+		Track track1 = new Track("Track A", 1);
+		Track track2 = new Track("Track B", 2);
+		CompactDisc cd = 
+				new CompactDisc(
+						"Liebestraum", 
+						"Liszt", 
+						"Classical", 
+						24.95f);
+		cd.addTrack(track1);
+		cd.addTrack(track2);
+		DigitalVideoDisc dvd = 
+				new DigitalVideoDisc(
+						"Star Wars", 
+						"Science Fiction", 
+						"George Lucas", 
+						87,
+						24.95f);
+		Book book = new Book(
+				"Data structures and algorithms", 
+				"Textbook",
+				10.05f);
+		book.addAuthor("Nguyen Van A");
+		book.addAuthor("Tran Thi B");
+		book.addAuthor("Le Van C");
+		
+		mediae.add(cd);
+		mediae.add(dvd);
+		mediae.add(book);
+		
+		for (Media m : mediae) {
+			System.out.println(m.toString());
+		}
+	}
 
 	public static void main(String[] args) {
 //		CompactDiscTest();
 //		BookTest();
 //		DVDTest();
-		MediaEqualityTest();
+//		MediaEqualityTest();
+		MediaToString();
 	}
 
 }
