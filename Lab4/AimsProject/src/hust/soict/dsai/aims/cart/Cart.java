@@ -93,4 +93,13 @@ public class Cart {
 		if (cnt == 0)
 			System.out.println("No result found!");
 	}
+	
+	public void sortByTitle() {
+		Collections.sort(itemsOrdered, Media.COMPARE_BY_TITLE_COST);
+	}
+	
+	public void sortByCost() {
+		Collections.sort(itemsOrdered, Media.COMPARE_BY_COST_TITLE);
+	}
+	
 }
