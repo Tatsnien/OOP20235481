@@ -18,6 +18,7 @@ public class DigitalVideoDisc extends Disc implements Playable{
 		super(title, category, director, length, cost);
 	}
 	
+	@Override
 	public String toString() {
 		String res = "DVD - ";
 		res += getTitle() + " - ";
