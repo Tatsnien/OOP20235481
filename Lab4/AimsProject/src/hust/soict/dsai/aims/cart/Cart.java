@@ -7,51 +7,42 @@ public class Cart {
 	private static final int MAX_NUMBERS_ORDERED = 20;
 	private List<Media> itemsOrdered = new ArrayList<Media>();
 	
+	public List<Media> getItemsOrdered() {
+		return itemsOrdered;
+	}
+
 	public void addMedia(Media media) {
 		if (itemsOrdered.size() == MAX_NUMBERS_ORDERED) {
 			System.out.println("The cart is almost full");
 			return;
 		}
 		
-		itemsOrdered.add(media);
-		
-		System.out.println("The media has been added");
+		if (itemsOrdered.contains(media))
+			System.out.println(media.getTitle() + " has existed.");
+		else {
+			itemsOrdered.add(media);
+			System.out.println(media.getTitle() + " has been added.");
+		}
 	}
 	
 	public void addMedia(Media[] mediaList) {
-		int n = mediaList.length;
-		
-		if (itemsOrdered.size() + n > MAX_NUMBERS_ORDERED) {
-			System.out.println("The cart is almost full");
-			return;
-		}
-		
-		for (int i = 0; i < n; ++i)
-			itemsOrdered.add(mediaList[i]);
-		
-		System.out.println(n + " medias has been added");
+		for (Media media : mediaList) 
+			addMedia(media);
 	}
 	
 	public void addMedia(Media media1, Media media2) {
-		if (itemsOrdered.size() >= 19) {
-			System.out.println("The cart is almost full");
-			return;
-		}
-		
-		itemsOrdered.add(media2);
-		itemsOrdered.add(media2);
-		
-		System.out.println("2 medias has been added");
+		addMedia(media1);
+		addMedia(media2);
 	}
 	
 	public void removeMedia(Media media) {
 		for (Media item : itemsOrdered)
 			if (item.equals(media)) {
 				itemsOrdered.remove(media);
-				System.out.println("The media has been removed");
+				System.out.println(media.getTitle() + " has been removed.");
 				return;
 			}
-		System.out.println("Media not found");
+		System.out.println(media.getTitle() + " is not found");
 	}
 	
 	public float totalCost() {
@@ -65,8 +56,11 @@ public class Cart {
 		System.out.println("***********************CART***********************");
 		System.out.println("Ordered Items:");
 		
-		for (int i = 0; i < itemsOrdered.size(); ++i) 
-			System.out.println(i + 1 + ". " + itemsOrdered.get(i).toString());
+		int i = 0;
+		for (Media media : itemsOrdered) {
+			i += 1;
+			System.out.println(i + ". " + media.toString());
+		}
 		
 		System.out.println("Total cost: " + totalCost() + " $");
 		System.out.println("**************************************************");
@@ -74,10 +68,10 @@ public class Cart {
 
 	public void search(int id) {
 		int cnt = 0;
-		for (int i = 0; i < itemsOrdered.size(); ++i)
-			if (itemsOrdered.get(i).isMatch(id)) {
+		for (Media media : itemsOrdered)
+			if (media.isMatch(id)) {
 				cnt += 1;
-				System.out.println(cnt + ". " + itemsOrdered.get(i).toString());
+				System.out.println(cnt + ". " + media.toString());
 			}
 		if (cnt == 0)
 			System.out.println("No result found!");
@@ -85,10 +79,10 @@ public class Cart {
 	
 	public void search(String title) {
 		int cnt = 0;
-		for (int i = 0; i < itemsOrdered.size(); ++i)
-			if (itemsOrdered.get(i).isMatch(title)) {
+		for (Media media : itemsOrdered)
+			if (media.isMatch(title)) {
 				cnt += 1;
-				System.out.println(cnt + ". " + itemsOrdered.get(i).toString());
+				System.out.println(cnt + ". " + media.toString());
 			}
 		if (cnt == 0)
 			System.out.println("No result found!");
