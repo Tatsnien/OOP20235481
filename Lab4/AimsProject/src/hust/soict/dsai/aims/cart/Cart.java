@@ -17,12 +17,8 @@ public class Cart {
 			return;
 		}
 		
-		if (itemsOrdered.contains(media))
-			System.out.println(media.getTitle() + " has existed.");
-		else {
-			itemsOrdered.add(media);
-			System.out.println(media.getTitle() + " has been added.");
-		}
+		itemsOrdered.add(media);
+		System.out.println("\"" + media.getTitle() + "\" has been added.");
 	}
 	
 	public void addMedia(Media[] mediaList) {
@@ -39,10 +35,10 @@ public class Cart {
 		for (Media item : itemsOrdered)
 			if (item.equals(media)) {
 				itemsOrdered.remove(media);
-				System.out.println(media.getTitle() + " has been removed.");
+				System.out.println("\"" + media.getTitle() + "\" has been removed.");
 				return;
 			}
-		System.out.println(media.getTitle() + " is not found");
+		System.out.println("\"" + media.getTitle() + "\" is not found");
 	}
 	
 	public float totalCost() {

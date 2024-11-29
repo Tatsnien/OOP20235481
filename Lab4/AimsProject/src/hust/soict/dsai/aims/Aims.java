@@ -200,7 +200,7 @@ public class Aims {
 			if (option == 1)
 				seeMediaDetail(getMediaInStore()); //Done
 			else if (option == 2)
-				addMediaToCart(); //Done
+				addMediaToCart(getMediaInStore()); //Done
 			else if (option == 3)
 				playMedia(getMediaInStore()); //Done
 			else if (option == 4)
@@ -273,25 +273,33 @@ public class Aims {
 			option = getOption(2);
 			scanner.nextLine();
 			
-			if (option == 1)
+			if (option == 1) {
+				System.out.println("ID: ");
 				cart.search(scanner.nextInt());
-			else if (option == 2)
+				scanner.nextLine();
+			}
+			else if (option == 2) {
+				System.out.println("Title: ");
 				cart.search(scanner.nextLine());
-			scanner.nextLine();
+			}
+				
 		}
 	}
 	
 	public static void sortMediaInCart() {
 		int option = -1;
-		while (option != 0) {
-			sortMenu();
-			option = getOption(2);
-			scanner.nextLine();
+		sortMenu();
+		option = getOption(2);
+		scanner.nextLine();
+		
+		if (option == 1) {
+			cart.sortByTitle();
+			System.out.println("Cart sorted by title");
+		}
 			
-			if (option == 1)
-				cart.sortByTitle();
-			else if (option == 2)
-				cart.sortByCost();
+		else if (option == 2) {
+			cart.sortByCost();
+			System.out.println("Cart sorted by cost");
 		}
 	}
 	
@@ -429,128 +437,10 @@ public class Aims {
 		cart.removeMedia(curMedia);
 	}
 	
-	public static void addDVDToCart(){
-		String title = "";
-		String category = "";
-		String director = "";
-		int length = 0;
-		float cost = 0;
-		
-		int option = -1;	
-		while (option != 0) {
-			addDVDMenu();
-			option = getOption(4);
-			scanner.nextLine();
-			
-			if (option > 0) {
-				System.out.println("Title: "); 		
-				title = scanner.nextLine();
-			}
-			if (option > 1) {
-				System.out.println("Category: "); 
-				category = scanner.nextLine();
-				System.out.println("Cost: "); 	
-				cost = scanner.nextFloat();
-				scanner.nextLine();
-			}
-			if (option > 2) {
-				System.out.println("Director: "); 
-				director = scanner.nextLine();
-			}
-			if (option > 3) {
-				System.out.println("Length: "); 	
-				length = scanner.nextInt();
-				scanner.nextLine();
-			}
-			
-			if (option == 1)
-				cart.addMedia(new DigitalVideoDisc(title));
-			else if (option == 2)
-				cart.addMedia(new DigitalVideoDisc(title, category, cost));
-			else if (option == 3)
-				cart.addMedia(new DigitalVideoDisc(title, category, director, cost));
-			else if (option == 4)
-				cart.addMedia(new DigitalVideoDisc(title, category, director, length, cost));
-		}
-	}
-	
-	public static void addCDToCart(){
-		String title = "";
-		String artist = "";
-		String category = "";
-		float cost = 0;
-		
-		int option = -1;	
-		while (option != 0) {
-			addCDMenu();
-			option = getOption(2);
-			scanner.nextLine();
-			
-			if (option > 0) {
-				System.out.println("Title: ");
-				title = scanner.nextLine();
-				System.out.println("Artist: ");
-				artist = scanner.nextLine();
-			}
-			if (option > 1) {
-				System.out.println("Category: "); 
-				category = scanner.nextLine();
-				System.out.println("Cost: "); 
-				cost = scanner.nextFloat();
-				scanner.nextLine();
-			}
-			
-			if (option == 1)
-				cart.addMedia(new CompactDisc(title, artist));
-			else if (option == 2)
-				cart.addMedia(new CompactDisc(title, artist, category, cost));
-		}
-	}
-	
-	public static void addBookToCart(){
-		String title = "";
-		String category = "";
-		float cost = 0;
-		
-		int option = -1;	
-		while (option != 0) {
-			addBookMenu();
-			option = getOption(2);
-			scanner.nextLine();
-			
-			if (option > 0) {
-				System.out.println("Title: "); 
-				title = scanner.nextLine();
-			}
-			if (option > 1) {
-				System.out.println("Category: "); 
-				category = scanner.nextLine();
-				System.out.println("Cost: "); 
-				cost = scanner.nextFloat();
-				scanner.nextLine();
-			}
-			
-			if (option == 1)
-				cart.addMedia(new Book(title));
-			else if (option == 2)
-				cart.addMedia(new Book(title, category, cost));
-		}
-	}
-	
-	public static void addMediaToCart() {
-		int option = -1;
-		while (option != 0) {
-			addMediaMenu();
-			option = getOption(3);
-			scanner.nextLine();
-			
-			if (option == 1)
-				addDVDToCart(); //Done
-			else if (option == 2)
-				addCDToCart(); //Done
-			else if (option == 3)
-				addBookToCart(); //Done
-		}
+	public static void addMediaToCart(Media curMedia) {
+		if (curMedia == null)
+			return;
+		cart.addMedia(curMedia);
 	}
 	
 	public static void playMedia(Media curMedia) {
@@ -558,49 +448,11 @@ public class Aims {
 			return;
 		if (curMedia instanceof DigitalVideoDisc)
 			((DigitalVideoDisc) curMedia).play();
-		if (curMedia instanceof CompactDisc)
+		else if (curMedia instanceof CompactDisc)
 			((CompactDisc) curMedia).play();
+		else
+			System.out.println("Cannot play \"" + curMedia.getTitle() + "\"");
 	}
-	
-/*
-main
-1 -> viewStore
-2 --> addMediaToCart
-1 ---> addDVDToCart
-1 Snow White
-2 Cinderella, Animation, 18.33
-3 Aladin, Animation, 18.33, Jafar
-4 Tarzan, Animation, 18.33, Belle, 2
-0
-2 ---> addCDToCart
-1 Turkish March, Mozart
-2 Liebestraum, Liszt, Classical, 6.29
-0
-3 ---> addBookToCart
-1 Calculus III
-2 DSA, Textbook, 15.69
-0
-0
-1 --> seeMediaDetail
-2 ---> playMedia
-3 --> playMedia
-DSA
-4 --> seeCurrentCart
-1 ---> filterMediaInCart
-1
-2
-0
-2 ---> sortMediaInCart
-1
-2
-0
-3 ---> removeMediaFromCart
-4 ---> playMedia
-Liebestraum
-5 ---> placeOrder
-0
-0
- */
 	
 	public static void placeOrder() {
 		List<Media> itemsOrdered = cart.getItemsOrdered();
@@ -614,6 +466,10 @@ Liebestraum
 			cart.removeMedia(itemsOrdered.get(i));
 		
 		System.out.println("An order is created");
+	}
+
+	public static void setStore(Store store) {
+		Aims.store = store;
 	}
 
 	public static void main(String[] args) {

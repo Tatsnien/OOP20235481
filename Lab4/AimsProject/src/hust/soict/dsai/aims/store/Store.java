@@ -18,10 +18,10 @@ public class Store {
 		}
 		
 		if (itemsInStore.contains(media))
-			System.out.println(media.getTitle() + " has existed.");
+			System.out.println("\"" + media.getTitle() + "\" has existed.");
 		else {
 			itemsInStore.add(media);
-			System.out.println(media.getTitle() + " has been added.");
+			System.out.println("\"" + media.getTitle() + "\" has been added.");
 		}
 	}
 	
@@ -39,10 +39,10 @@ public class Store {
 		for (Media item : itemsInStore)
 			if (item.equals(media)) {
 				itemsInStore.remove(media);
-				System.out.println(media.getTitle() + " has been removed.");
+				System.out.println("\"" + media.getTitle() + "\" has been removed.");
 				return;
 			}
-		System.out.println(media.getTitle() + " is not found");
+		System.out.println("\"" + media.getTitle() + "\" is not found");
 	}
 
 	public void print() {
