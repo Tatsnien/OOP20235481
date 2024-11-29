@@ -36,6 +36,7 @@ public class Book extends Media {
 		System.out.println("Author \"" + authorName + "\" not found!");
 	}
 	
+	@Override
 	public String toString() {
 		String res = "Book - ";
 		res += getTitle() + " - ";

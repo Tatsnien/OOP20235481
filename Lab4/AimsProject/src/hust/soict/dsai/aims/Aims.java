@@ -11,7 +11,7 @@ public class Aims {
 	private static Cart cart = new Cart();
 	private static Scanner scanner = new Scanner(System.in);
 	
-	public static void showMenu() {
+	private static void showMenu() {
 		System.out.println("AIMS: ");
 		System.out.println("--------------------------------");
 		System.out.println("1. View store");
@@ -22,7 +22,7 @@ public class Aims {
 		System.out.println("Please choose a number: 0-1-2-3");
 	}
 	
-	public static void storeMenu() {
+	private static void storeMenu() {
 		System.out.println("Options: ");
 		System.out.println("--------------------------------");
 		System.out.println("1. See a media's details");
@@ -34,7 +34,7 @@ public class Aims {
 		System.out.println("Please choose a number: 0-1-2-3-4");
 	}
 	
-	public static void mediaDetailsPlayableMenu() {
+	private static void mediaDetailsPlayableMenu() {
 		System.out.println("Options: ");
 		System.out.println("--------------------------------");
 		System.out.println("1. Add to cart");
@@ -44,7 +44,7 @@ public class Aims {
 		System.out.println("Please choose a number: 0-1-2");
 	}
 	
-	public static void mediaDetailsOtherMenu() {
+	private static void mediaDetailsOtherMenu() {
 		System.out.println("Options: ");
 		System.out.println("--------------------------------");
 		System.out.println("1. Add to cart");
@@ -53,7 +53,7 @@ public class Aims {
 		System.out.println("Please choose a number: 0-1");
 	}
 	
-	public static void cartMenu() {
+	private static void cartMenu() {
 		System.out.println("Options: ");
 		System.out.println("--------------------------------");
 		System.out.println("1. Filter medias in cart");
@@ -66,7 +66,7 @@ public class Aims {
 		System.out.println("Please choose a number: 0-1-2-3-4-5");
 	}
 	
-	public static void sortMenu() {
+	private static void sortMenu() {
 		System.out.println("Options: ");
 		System.out.println("--------------------------------");
 		System.out.println("1. Sort by title");
@@ -76,7 +76,7 @@ public class Aims {
 		System.out.println("Please choose a number: 0-1-2");
 	}
 	
-	public static void filterMenu() {
+	private static void filterMenu() {
 		System.out.println("Options: ");
 		System.out.println("--------------------------------");
 		System.out.println("1. Filter by id");
@@ -86,7 +86,7 @@ public class Aims {
 		System.out.println("Please choose a number: 0-1-2");
 	}
 	
-	public static void updateMenu() {
+	private static void updateMenu() {
 		System.out.println("Options: ");
 		System.out.println("--------------------------------");
 		System.out.println("1. Add a media");
@@ -96,7 +96,7 @@ public class Aims {
 		System.out.println("Please choose a number: 0-1-2");
 	}
 	
-	public static void addMediaMenu() {
+	private static void addMediaMenu() {
 		System.out.println("Options: ");
 		System.out.println("--------------------------------");
 		System.out.println("1. Add DVD");
@@ -107,7 +107,7 @@ public class Aims {
 		System.out.println("Please choose a number: 0-1-2-3");
 	}
 	
-	public static void addDVDMenu() {
+	private static void addDVDMenu() {
 		System.out.println("Add DVD options: ");
 		System.out.println("--------------------------------");
 		System.out.println("1. By title");
@@ -119,7 +119,7 @@ public class Aims {
 		System.out.println("Please choose a number: 0-1-2-3-4");
 	}
 	
-	public static void addCDMenu() {
+	private static void addCDMenu() {
 		System.out.println("Add CD options: ");
 		System.out.println("--------------------------------");
 		System.out.println("1. By title, artist");
@@ -129,7 +129,7 @@ public class Aims {
 		System.out.println("Please choose a number: 0-1-2");
 	}
 	
-	public static void addBookMenu() {
+	private static void addBookMenu() {
 		System.out.println("Add book options: ");
 		System.out.println("--------------------------------");
 		System.out.println("1. By title");
@@ -189,7 +189,7 @@ public class Aims {
 		return curMedia;
 	}
 	
-	public static void viewStore() {
+	private static void viewStore() {
 		int option = -1;
 		while (option != 0) {
 			storeMenu();
@@ -208,7 +208,7 @@ public class Aims {
 		}
 	}
 	
-	public static void updateStore() {
+	private static void updateStore() {
 		int option = -1;
 		while (option != 0) {
 			updateMenu();
@@ -222,7 +222,7 @@ public class Aims {
 		}
 	}
 	
-	public static void seeCurrentCart() {
+	private static void seeCurrentCart() {
 		int option = -1;
 		while (option != 0) {
 			cartMenu();
@@ -243,7 +243,7 @@ public class Aims {
 		}
 	}
 	
-	public static void seeMediaDetail(Media curMedia) {
+	private static void seeMediaDetail(Media curMedia) {
 		if (curMedia == null) 
 			return;
 		
@@ -266,7 +266,7 @@ public class Aims {
 		}
 	}
 	
-	public static void filterMediaInCart() {
+	private static void filterMediaInCart() {
 		int option = -1;
 		while (option != 0) {
 			filterMenu();
@@ -286,7 +286,7 @@ public class Aims {
 		}
 	}
 	
-	public static void sortMediaInCart() {
+	private static void sortMediaInCart() {
 		int option = -1;
 		sortMenu();
 		option = getOption(2);
@@ -303,13 +303,13 @@ public class Aims {
 		}
 	}
 	
-	public static void removeMediaFromStore(Media curMedia) {
+	private static void removeMediaFromStore(Media curMedia) {
 		if (curMedia == null)
 			return;
 		store.removeMedia(curMedia);
 	}
 	
-	public static void addDVDToStore(){
+	private static void addDVDToStore(){
 		String title = "";
 		String category = "";
 		String director = "";
@@ -354,7 +354,7 @@ public class Aims {
 		}
 	}
 	
-	public static void addCDToStore(){
+	private static void addCDToStore(){
 		String title = "";
 		String artist = "";
 		String category = "";
@@ -387,7 +387,7 @@ public class Aims {
 		}
 	}
 	
-	public static void addBookToStore(){
+	private static void addBookToStore(){
 		String title = "";
 		String category = "";
 		float cost = 0;
@@ -415,7 +415,7 @@ public class Aims {
 		}
 	}
 	
-	public static void addMediaToStore() {
+	private static void addMediaToStore() {
 		int option = -1;		
 		while (option != 0) {
 			addMediaMenu();
@@ -431,19 +431,19 @@ public class Aims {
 		}
 	}
 	
-	public static void removeMediaFromCart(Media curMedia) {
+	private static void removeMediaFromCart(Media curMedia) {
 		if (curMedia == null)
 			return;
 		cart.removeMedia(curMedia);
 	}
 	
-	public static void addMediaToCart(Media curMedia) {
+	private static void addMediaToCart(Media curMedia) {
 		if (curMedia == null)
 			return;
 		cart.addMedia(curMedia);
 	}
 	
-	public static void playMedia(Media curMedia) {
+	private static void playMedia(Media curMedia) {
 		if (curMedia == null)
 			return;
 		if (curMedia instanceof DigitalVideoDisc)
@@ -454,7 +454,7 @@ public class Aims {
 			System.out.println("Cannot play \"" + curMedia.getTitle() + "\"");
 	}
 	
-	public static void placeOrder() {
+	private static void placeOrder() {
 		List<Media> itemsOrdered = cart.getItemsOrdered();
 		
 		if (itemsOrdered.size() == 0) {

@@ -39,6 +39,7 @@ public class CompactDisc extends Disc implements Playable{
 		System.out.println("Track \"" + track.getTitle() + "\" not found!");
 	}
 	
+	@Override
 	public int getLength() {
 		int total_length = 0;
 		for (Track track : tracks)
@@ -46,6 +47,7 @@ public class CompactDisc extends Disc implements Playable{
 		return total_length;
 	}
 	
+	@Override
 	public String toString() {
 		String res = "CD - ";
 		res += getTitle() + " - ";
