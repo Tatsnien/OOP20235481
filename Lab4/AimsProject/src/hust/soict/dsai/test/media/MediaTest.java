@@ -1,6 +1,7 @@
 package hust.soict.dsai.test.media;
 
 import hust.soict.dsai.aims.media.*;
+import java.util.*;
 
 public class MediaTest {
 	
@@ -61,11 +62,85 @@ public class MediaTest {
 						18.99f);
 		System.out.println("dvd3 = " + dvd3.getId());
 	}
+	
+	public static void MediaEqualityTest() {
+		DigitalVideoDisc dvd1 = 
+				new DigitalVideoDisc(
+						"Star Wars", 
+						"Science Fiction", 
+						"George Lucas", 
+						87,
+						24.95f);
+		DigitalVideoDisc dvd2 = 
+				new DigitalVideoDisc(
+						"Aladin", 
+						"Animation", 
+						18.99f);
+		Book book = new Book("Aladin");
+		String s = "Aladin";
+		Track track1 = new Track("Aladin", 1);
+		Track track2 = new Track("Aladin", 1);
+		if (dvd1.equals(book))
+			System.out.println("dvd1 == book");
+		if (book.equals(dvd1))
+			System.out.println("book == dvd1");
+		if (dvd2.equals(book))
+			System.out.println("dvd2 == book");
+		if (book.equals(dvd2))
+			System.out.println("book == dvd2");
+		if (book.equals(s))
+			System.out.println("book == s");
+		if (track1.equals(book))
+			System.out.println("track1 == book");
+		if (book.equals(track1))
+			System.out.println("book == track1");
+		if (track1.equals(track2))
+			System.out.println("track1 == track2");
+	}
+	
+	public static void MediaToString() {
+		List<Media> mediae = new ArrayList<Media>();
+		
+		Track track1 = new Track("Track A", 1);
+		Track track2 = new Track("Track B", 2);
+		CompactDisc cd = 
+				new CompactDisc(
+						"Liebestraum", 
+						"Liszt", 
+						"Classical", 
+						24.95f);
+		cd.addTrack(track1);
+		cd.addTrack(track2);
+		DigitalVideoDisc dvd = 
+				new DigitalVideoDisc(
+						"Star Wars", 
+						"Science Fiction", 
+						"George Lucas", 
+						87,
+						24.95f);
+		Book book = new Book(
+				"Data structures and algorithms", 
+				"Textbook",
+				10.05f);
+		book.addAuthor("Nguyen Van A");
+		book.addAuthor("Tran Thi B");
+		book.addAuthor("Le Van C");
+		
+		mediae.add(cd);
+		mediae.add(dvd);
+		mediae.add(book);
+		
+		for (Media m : mediae) {
+			System.out.println(m.toString());
+		}
+	}
 
 	public static void main(String[] args) {
-		CompactDiscTest();
-		BookTest();
-		DVDTest();
+//		CompactDiscTest();
+//		BookTest();
+//		DVDTest();
+//		MediaEqualityTest();
+		MediaToString();
 	}
 
 }

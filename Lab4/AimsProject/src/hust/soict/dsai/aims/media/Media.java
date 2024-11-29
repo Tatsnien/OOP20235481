@@ -15,6 +15,10 @@ public abstract class Media {
 		return title;
 	}
 
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 	public String getCategory() {
 		return category;
 	}
@@ -35,6 +39,18 @@ public abstract class Media {
 		this.title = title;
 		this.category = category;
 		this.cost = cost;
+	}
+	
+	public boolean equals(Object obj) {
+		if (obj == null)
+			return false;
+		try {
+			Media media = (Media) obj;
+			return media.getTitle().equals(title);
+		}
+		catch(Exception e) {
+			return false;
+		}
 	}
 	
 	public boolean isMatch(int id) {

@@ -27,13 +27,29 @@ public class Book extends Media {
 	}
 	
 	public void removeAuthor(String authorName) {
-		for (int i = 0; i < authors.size(); ++i) 
-			if (authors.get(i).equals(authorName)) {
-				authors.remove(i);
+		for (String author : authors) 
+			if (author.equals(authorName)) {
+				authors.remove(author);
 				System.out.println("Author \"" + authorName + "\" removed!");
 				return;
 			}
 		System.out.println("Author \"" + authorName + "\" not found!");
+	}
+	
+	public String toString() {
+		String res = "Book - ";
+		res += getTitle() + " - ";
+		res += getCategory() + " - ";
+		
+		for (int i = 0; i < authors.size(); ++i) {
+			res += authors.get(i);
+			if (i + 1 < authors.size())
+				res += ", ";
+		}
+		res += " - ";
+		
+		res += getCost() + " $";
+		return res;
 	}
 	
 }
