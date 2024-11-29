@@ -1,6 +1,6 @@
 package hust.soict.dsai.aims.media;
 
-public class DigitalVideoDisc extends Disc {
+public class DigitalVideoDisc extends Disc implements Playable{
 	private static int nbDigitalVideoDisc = 0;
 	
 	public DigitalVideoDisc(String title){
@@ -47,17 +47,9 @@ public class DigitalVideoDisc extends Disc {
 		return res;
 	}
 	
-	public boolean isMatch(int id) {
-		return getId() == id;
+	public void play() {
+		System.out.println("Playing DVD: " + this.getTitle());
+		System.out.println("DVD length: " + this.getLength());
 	}
 	
-	public boolean isMatch(String title) {
-		String s1 = title.toLowerCase();
-		String s2 = getTitle().toLowerCase();
-		for (int i = 0; i < s1.length(); ++i)
-			for (int j = 0; j < s2.length(); ++j)
-				if (s1.charAt(i) == s2.charAt(j))
-					return true;
-		return false;
-	}
 }
