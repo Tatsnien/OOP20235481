@@ -6,8 +6,14 @@ public class CompactDisc extends Disc implements Playable{
 	private String artist;
 	private List<Track> tracks = new ArrayList<Track>();
 	
-	public CompactDisc() {
-		super();
+	public CompactDisc(String title, String artist){
+		super(title);
+		this.artist = artist;
+	}
+	
+	public CompactDisc(String title, String artist, String category, float cost) {
+		super(title, category, cost);
+		this.artist = artist;
 	}
 
 	public String getArtist() {
@@ -16,21 +22,21 @@ public class CompactDisc extends Disc implements Playable{
 
 	public void addTrack(Track track) {
 		if (tracks.contains(track)) {
-			System.out.println("Track existed!");
+			System.out.println("Track \"" + track.getTitle() + "\" has already existed!");
 			return;
 		}
 		tracks.add(track);
-		System.out.println("Track added!");
+		System.out.println("Track \"" + track.getTitle() + "\" added!");
 	}
 	
-	public void removeTrack(String trackName) {
-		for (int i = 0; i < tracks.size(); ++i) 
-			if (tracks.get(i).getTitle().equals(trackName)) {
-				tracks.remove(i);
-				System.out.println("Track removed!");
+	public void removeTrack(Track track) {
+		for (Track cur : tracks) 
+			if (cur == track) {
+				tracks.remove(cur);
+				System.out.println("Track \"" + track.getTitle() + "\" removed!");
 				return;
 			}
-		System.out.println("Track not found!");
+		System.out.println("Track \"" + track.getTitle() + "\" not found!");
 	}
 	
 	public int getLength() {
