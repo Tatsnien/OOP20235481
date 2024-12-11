@@ -1,0 +1,62 @@
+Q: Which classes are aggregates of other classes?
+- Aims aggregates of Cart and Store
+- Cart aggregates of Media, Book, Disc, CompactDisc, DigitalVideoDisc
+- Store aggregates of Media, Book, Disc, CompactDisc, DigitalVideoDisc
+- CompactDisc aggregrates of Track
+
+Q: If the passing object is not an instance of Media, what happens?
+A:
+- Case 1: passing object is an instance of a child class of Media
+-> the method functions normally because the object is still be considered an instance of Media.
+- Case 2: passing object is not an instance of a child class of Media
+-> the method will catch an error at casting stage, therefor return false.
+
+Q: Iterate through the list and print out the information of the media by using toString() method. Observe what happens and explain in detail.
+A:
+- Case 1: toString() is overrided in child classes of Media
+-> When toString() is called, the particular toString() with corresponding to the class of the current object will be called.
+- Case 2: toString() is not overrided in child classes of Media and toString() is overrided in Media
+-> When toString() is called, the method toString() of the parent class will be called. If its parent class is Media, then the method toString() in Media is called. If its parent class is a child class of Media, then if its parent class has overrided toString() method, this method will be called, otherwise the toString() method of Media will be called.
+- Case 3: toString() is not overrided in Media and its child class.
+-> When toString() is called, because all classes by default is a child of Object class, then this class's toString() method will be called if its children's toString() method has not been overrided yet. This method will return a String including the class name, its packages and its hexadecimal hashcode.
+
+Q: What class should implement the Comparable interface?
+A: Comparable interface should be implemented by class Media
+
+Q: In those classes, how should you implement the compareTo() method be to reflect the ordering that we want?
+A: 
+If sorting by title and then by cost, the overrided method should be:
+@Override
+public int compareTo(Media otherMedia) {
+	int res = this.getTitle().compareTo(otherMedia.getTitle());
+	if (res != 0)
+		return res;
+	if (this.getCost() == otherMedia.getCost())
+		return 0;
+	return this.getCost() > otherMedia.getCost() ? -1 : 1;
+}
+
+If sorting by cost and then by title:
+@Override
+public int compareTo(Media otherMedia) {
+	if (this.getCost() != otherMedia.getCost())
+		return this.getCost() > otherMedia.getCost() ? -1 : 1;
+	return this.getTitle().compareTo(otherMedia.getTitle());
+}
+
+Q: Can we have two ordering rules of the item (by title then cost and by cost then title) if we use this Comparable interface approach?
+A: Since there is only one signature of compareTo() that is being used in Collections.sort(), there is no way that two rules can be overrided into compareTo() in the same class.
+
+Q: Suppose the DVDs has a different ordering rule from the other media types, that is by title, then decreasing length, then cost. How would you modify your code to allow this?
+A:
+@Override
+public int compareTo(Media otherMedia) {
+	int res = this.getTitle().compareTo(otherMedia.getTitle());
+	if (res != 0)
+		return res;
+	if (this.getLength() != otherMedia.getLength())
+		return this.getLength() < otherMedia.getLength() ? -1 : 1;
+	if (this.getCost() != otherMedia.getCost())
+		return 0;
+	return this.getCost() > otherMedia.getCost() ? -1 : 1;
+}
