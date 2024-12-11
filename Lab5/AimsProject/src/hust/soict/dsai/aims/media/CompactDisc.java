@@ -20,6 +20,10 @@ public class CompactDisc extends Disc implements Playable{
 		return artist;
 	}
 
+	public List<Track> getTracks() {
+		return tracks;
+	}
+
 	public void addTrack(Track track) {
 		if (tracks.contains(track)) {
 			System.out.println("Track \"" + track.getTitle() + "\" has already existed!");

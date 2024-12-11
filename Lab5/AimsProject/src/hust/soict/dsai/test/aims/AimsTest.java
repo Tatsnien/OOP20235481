@@ -2,6 +2,7 @@ package hust.soict.dsai.test.aims;
 import hust.soict.dsai.aims.*;
 import hust.soict.dsai.aims.media.*;
 import hust.soict.dsai.aims.store.*;
+import hust.soict.dsai.aims.screen.*;
 
 public class AimsTest {
 
@@ -30,9 +31,12 @@ public class AimsTest {
 		store.addMedia(cd1);
 		store.addMedia(book1);
 		store.addMedia(book2);
-		Aims.setStore(store);
 		
-		Aims.main(args);
+		new StoreScreen(store);
+		
+//		Aims.setStore(store);
+		
+//		Aims.main(args);
 	}
 
 }
