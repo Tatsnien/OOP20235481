@@ -45,7 +45,14 @@ public class StoreScreen extends JFrame {
 		
 		menu.add(smUpdateStore);
 		menu.add(new JMenuItem("View store"));
-		menu.add(new JMenuItem("View cart"));
+		JMenuItem cartButton = new JMenuItem("View cart");
+		cartButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new CartScreen(cart);
+			}
+		});
+		menu.add(cartButton);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -66,7 +73,7 @@ public class StoreScreen extends JFrame {
 		cartButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				cart.print();
+				new CartScreen(cart);
 			}
 		});
 		cartButton.setPreferredSize(new Dimension(100, 50));

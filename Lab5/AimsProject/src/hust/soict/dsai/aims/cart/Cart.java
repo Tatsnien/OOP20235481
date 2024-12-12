@@ -1,13 +1,17 @@
 package hust.soict.dsai.aims.cart;
 
 import hust.soict.dsai.aims.media.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.*;
 
 public class Cart {
 	private static final int MAX_NUMBERS_ORDERED = 20;
-	private List<Media> itemsOrdered = new ArrayList<Media>();
+	private ObservableList<Media> itemsOrdered = 
+			FXCollections.observableArrayList();
 	
-	public List<Media> getItemsOrdered() {
+	public ObservableList<Media> getItemsOrdered() {
 		return itemsOrdered;
 	}
 

@@ -1,10 +1,10 @@
-package hust.soict.dsai.test.aims;
+package hust.soict.dsai.test.screen;
 import hust.soict.dsai.aims.*;
 import hust.soict.dsai.aims.media.*;
 import hust.soict.dsai.aims.store.*;
 import hust.soict.dsai.aims.screen.*;
 
-public class AimsTest {
+public class ScreenTest {
 
 	public static void main(String[] args) {		
 		Track track1 = new Track("Turkish March", 2);
@@ -32,9 +32,7 @@ public class AimsTest {
 		store.addMedia(book1);
 		store.addMedia(book2);
 		
-		Aims.setStore(store);
-		
-		Aims.main(args);
+		new StoreScreen(store);
 	}
 
 }
