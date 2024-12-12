@@ -12,6 +12,7 @@ public class NumberGrid extends JFrame {
 		tfDisplay = new JTextField();
 		tfDisplay.setComponentOrientation(
 				ComponentOrientation.RIGHT_TO_LEFT);
+		tfDisplay.setSize(200, 5);
 		
 		JPanel panelButtons = new JPanel(new GridLayout(4, 3));
 		addButtons(panelButtons);
@@ -55,15 +56,21 @@ public class NumberGrid extends JFrame {
 			if (button.charAt(0) >= '0' && button.charAt(0) <= '9')
 				tfDisplay.setText(tfDisplay.getText() + button);
 			else if (button.equals("DEL")) {
-				// Handle the DEL case
+				try {
+					int len = tfDisplay.getText().length();
+					tfDisplay.setText(tfDisplay.getText(0, len - 1));
+				}
+				catch (Exception err) {
+					return;					
+				}
 			}
-			else {
-				// Handle the C case
+			else if (button.equals("C")){
+				tfDisplay.setText("");
 			}
 		}
 	}
 	
-//	public static void main(String[] args) {
-//		new NumberGrid();
-//	}
+	public static void main(String[] args) {
+		new NumberGrid();
+	}
 }
