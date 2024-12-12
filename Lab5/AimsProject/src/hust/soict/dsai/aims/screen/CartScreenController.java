@@ -6,6 +6,7 @@ import hust.soict.dsai.aims.media.Playable;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -20,6 +21,16 @@ public class CartScreenController {
 
     @FXML
     private Button btnRemove;
+
+    @FXML
+    private RadioButton radioBtnFilterId;
+
+    @FXML
+    private RadioButton radioBtnFilterTitle;
+
+    @FXML
+    private TextField tfFilter;
+
 	
 	@FXML
 	private TableView<Media> tblMedia;
@@ -66,6 +77,14 @@ public class CartScreenController {
 					} 
 				});
 		
+		tfFilter.textProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> observable, 
+						String oldValue, 
+						String newValue) {
+				showFilteredMedia(newValue);
+			}
+		});
 	}
 
 	void updateButtonBar(Media media) {
@@ -82,12 +101,13 @@ public class CartScreenController {
 		cart.removeMedia(media);
 	}
 	
-//	private class ChangeListener<Media>{
-//		@Override
-//		public void changed(ObservableValue<? extends Media> observable, Media oldValue, Media newValue) {
-//			if (newValue != null) {
-//				updateButtonBar(newValue);
-//			}
-//		}
-//	}
+	void showFilteredMedia(String newValue) {
+		ObservableList<Media> filteredList;
+		if (radioBtnFilterId.isSelected())
+			filteredList = cart.searchById(newValue);
+		else
+			filteredList = cart.searchByTitle(newValue);
+		tblMedia.setItems(filteredList);
+	}
+	
 }

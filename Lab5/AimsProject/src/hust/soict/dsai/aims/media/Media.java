@@ -61,11 +61,17 @@ public abstract class Media {
 		}
 	}
 	
-	public boolean isMatch(int id) {
-		return getId() == id;
+	public boolean isMatchByID(String id) {
+		String s1 = Integer.toString(this.id);
+		String s2 = id;
+		for (int i = 0; i < s1.length(); ++i)
+			for (int j = 0; j < s2.length(); ++j)
+				if (s1.charAt(i) == s2.charAt(j))
+					return true;
+		return false;
 	}
 	
-	public boolean isMatch(String title) {
+	public boolean isMatchByTitle(String title) {
 		String s1 = title.toLowerCase();
 		String s2 = getTitle().toLowerCase();
 		for (int i = 0; i < s1.length(); ++i)
