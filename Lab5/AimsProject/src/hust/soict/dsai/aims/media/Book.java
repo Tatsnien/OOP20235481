@@ -13,6 +13,11 @@ public class Book extends Media {
 		super(title, category, cost);
 	}
 	
+	public Book(String title, String authors, String category, String cost) {
+		super(title.strip(), category.strip(), Float.parseFloat(cost.strip()));
+		this.authors = Arrays.asList(authors.strip().split(", "));
+	}
+	
 	public List<String> getAuthors() {
 		return authors;
 	}

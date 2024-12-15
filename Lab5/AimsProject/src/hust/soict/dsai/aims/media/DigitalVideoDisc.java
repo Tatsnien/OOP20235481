@@ -18,6 +18,10 @@ public class DigitalVideoDisc extends Disc implements Playable{
 		super(title, category, director, length, cost);
 	}
 	
+	public DigitalVideoDisc(String title, String category, String director, String length, String cost) {
+		super(title.strip(), category.strip(), director.strip(), Integer.parseInt(length.strip()), Float.parseFloat(cost.strip()));
+	}
+	
 	@Override
 	public String toString() {
 		String res = "DVD - ";

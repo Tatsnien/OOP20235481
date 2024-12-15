@@ -56,7 +56,6 @@ public class CartScreenController {
 	private TableColumn<Media, Float> colMediaCost;
 	
 	public CartScreenController(CartScreen cartFrame, Cart cart) {
-		super();
 		this.cartFrame = cartFrame;
 		this.cart = cart;
 		filteredByIdList = new FilteredList<>(cart.getItemsOrdered(), temp -> true);
@@ -150,5 +149,23 @@ public class CartScreenController {
 		this.cartFrame.setVisible(false);
 		new StoreScreen();
 	}
+	
+	@FXML
+    void miAddBook(ActionEvent event) {
+		this.cartFrame.setVisible(false);
+    	new AddBookToStoreScreen();
+    }
+
+	@FXML
+    void miAddCd(ActionEvent event) {
+    	this.cartFrame.setVisible(false);
+    	new AddCompactDiscToStoreScreen();
+    }
+
+    @FXML
+    void miAddDvd(ActionEvent event) {
+    	this.cartFrame.setVisible(false);
+    	new AddDigitalVideoDiscToStoreScreen();
+    }
 	
 }
