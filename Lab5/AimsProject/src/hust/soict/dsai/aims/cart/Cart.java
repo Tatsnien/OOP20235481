@@ -10,32 +10,26 @@ import javafx.collections.ObservableList;
 
 import java.math.*;
 import java.util.*;
+import java.util.function.Predicate;
 
 public class Cart {
 	private static final int MAX_NUMBERS_ORDERED = 20;
-	private DoubleProperty totalCost;
 	private ObservableList<Media> itemsOrdered = 
 			FXCollections.observableArrayList();
-	
-	public Cart(){
-		totalCost = new SimpleDoubleProperty(0);
-		itemsOrdered.addListener((ListChangeListener<? super Media>) c -> {calculateTotalCost();});
-	}
 	
 	public ObservableList<Media> getItemsOrdered() {
 		return itemsOrdered;
 	}
 
 	public double getTotalCost() {
-		Double totalCost = BigDecimal.valueOf(this.totalCost.get())
-			    .setScale(3, RoundingMode.HALF_UP)
-			    .doubleValue();
-		
+		double totalCost = 0;
+		for (Media media : this.itemsOrdered) 
+			totalCost += media.getCost();
 		return totalCost;
 	}
 	
-	public DoubleProperty totalCostProperty() {
-		return totalCost;
+	public String getTotalCostToString() {
+		return Double.toString(Math.round(this.getTotalCost() * 100) / 100.0);
 	}
 
 	public void addMedia(Media media) {
@@ -46,20 +40,16 @@ public class Cart {
 		
 		itemsOrdered.add(media);
 		System.out.println("\"" + media.getTitle() + "\" has been added.");
-		
-		try {Platform.runLater(this::calculateTotalCost);} catch (Exception e) {}
 	}
 	
 	public void addMedia(Media[] mediaList) {
 		for (Media media : mediaList) 
 			addMedia(media);
-		try {Platform.runLater(this::calculateTotalCost);} catch (Exception e) {}
 	}
 	
 	public void addMedia(Media media1, Media media2) {
 		addMedia(media1);
 		addMedia(media2);
-		try {Platform.runLater(this::calculateTotalCost);} catch (Exception e) {}
 	}
 	
 	public void removeMedia(Media media) {
@@ -74,10 +64,6 @@ public class Cart {
 	
 	public void clear() {
 		this.itemsOrdered.clear();
-	}
-	
-	public void calculateTotalCost() {
-		totalCost.set(itemsOrdered.stream().mapToDouble(Media::getCost).sum());
 	}
 	
 	public void print() {

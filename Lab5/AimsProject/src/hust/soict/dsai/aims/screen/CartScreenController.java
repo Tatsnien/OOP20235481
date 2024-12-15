@@ -22,6 +22,8 @@ public class CartScreenController {
 	
 	private Cart cart;
 	private CartScreen cartFrame;
+	private FilteredList<Media> filteredByIdList;
+	private FilteredList<Media> filteredByTitleList;
 	
 	@FXML
 	private Label lbTotalCost;
@@ -41,7 +43,6 @@ public class CartScreenController {
     @FXML
     private TextField tfFilter;
 
-	
 	@FXML
 	private TableView<Media> tblMedia;
 	
@@ -58,10 +59,11 @@ public class CartScreenController {
 		super();
 		this.cartFrame = cartFrame;
 		this.cart = cart;
+		filteredByIdList = new FilteredList<>(cart.getItemsOrdered(), temp -> true);
+		filteredByTitleList = new FilteredList<>(cart.getItemsOrdered(), temp -> true);
 	}
 	
 	public void initialize() {
-		
 		colMediaTitle.setCellValueFactory(
 				new PropertyValueFactory<Media, String>("title"));
 		
@@ -94,10 +96,20 @@ public class CartScreenController {
 						String oldValue, 
 						String newValue) {
 				showFilteredMedia(newValue);
+				filteredByIdList.setPredicate(media -> {
+					return media.isFilteredById(newValue);
+				});
+				filteredByTitleList.setPredicate(media -> {
+					return media.isFilteredByTitle(newValue);
+				});
 			}
 		});
 
-		lbTotalCost.textProperty().bind(Bindings.format("$%.2f", cart.totalCostProperty()));
+		updateLbTotalCost();
+	}
+	
+	void updateLbTotalCost() {
+		lbTotalCost.setText(Double.toString(this.cart.getTotalCost()));
 	}
 
 	void updateButtonBar(Media media) {
@@ -112,15 +124,14 @@ public class CartScreenController {
 	void btnRemovePressed(ActionEvent event) {
 		Media media = tblMedia.getSelectionModel().getSelectedItem();
 		cart.removeMedia(media);
+		updateLbTotalCost();
 	}
 	
 	void showFilteredMedia(String newValue) {
-		ObservableList<Media> filteredList;
 		if (radioBtnFilterId.isSelected())
-			filteredList = cart.searchById(newValue);
+			tblMedia.setItems(filteredByIdList);
 		else
-			filteredList = cart.searchByTitle(newValue);
-		tblMedia.setItems(filteredList);
+			tblMedia.setItems(filteredByTitleList);
 	}
 	
 	@FXML
@@ -136,7 +147,6 @@ public class CartScreenController {
 	
 	@FXML
 	void btnViewStorePressed(ActionEvent event) {
-		System.out.println("Click: View Store");
 		this.cartFrame.setVisible(false);
 		new StoreScreen();
 	}

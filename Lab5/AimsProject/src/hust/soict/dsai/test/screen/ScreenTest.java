@@ -12,17 +12,17 @@ public class ScreenTest {
 		Track track3 = new Track("Swan Lake", 5);
 		
 		DigitalVideoDisc dvd1 = new DigitalVideoDisc(
-				"Tarzan", "Animation", "Jafar", 2, 18.33f);
+				"Tarzan", "Animation", "Jafar", 2, 18.25f);
 		
 		CompactDisc cd1 = new CompactDisc(
-				"Classical Melody", "Various Artist", "Classical", 6.29f);
+				"Classical Melody", "Various Artist", "Classical", 6.5f);
 		cd1.addTrack(track1);
 		cd1.addTrack(track2);
 		cd1.addTrack(track3);
 		
-		Book book1 = new Book("DSA", "Textbook", 15.69f);
+		Book book1 = new Book("DSA", "Textbook", 15.75f);
 		book1.addAuthor("Nguyen Van A");
-		Book book2 = new Book("Calculus III", "Textbook", 15.69f);
+		Book book2 = new Book("Calculus III", "Textbook", 15.0f);
 		book2.addAuthor("Bui Xuan Dieu");
 		book2.addAuthor("Dao Tuan Anh");
 		
