@@ -1,6 +1,7 @@
 package hust.soict.dsai.aims;
 
 import hust.soict.dsai.aims.cart.*;
+import hust.soict.dsai.aims.exception.PlayerException;
 import hust.soict.dsai.aims.media.*;
 import hust.soict.dsai.aims.store.Store;
 import java.util.*;
@@ -446,9 +447,19 @@ public class Aims {
 		if (curMedia == null)
 			return;
 		if (curMedia instanceof DigitalVideoDisc)
-			((DigitalVideoDisc) curMedia).play();
+			try {
+				((DigitalVideoDisc) curMedia).play();
+			} catch (PlayerException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		else if (curMedia instanceof CompactDisc)
-			((CompactDisc) curMedia).play();
+			try {
+				((CompactDisc) curMedia).play();
+			} catch (PlayerException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		else
 			System.out.println("Cannot play \"" + curMedia.getTitle() + "\"");
 	}
