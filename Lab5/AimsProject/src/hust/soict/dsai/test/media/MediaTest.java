@@ -1,5 +1,6 @@
 package hust.soict.dsai.test.media;
 
+import hust.soict.dsai.aims.exception.PlayerException;
 import hust.soict.dsai.aims.media.*;
 import java.util.*;
 
@@ -22,7 +23,12 @@ public class MediaTest {
 		
 		System.out.println(disc.getLength());
 		
-		disc.play();
+		try {
+			disc.play();
+		} catch (PlayerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public static void BookTest() {
