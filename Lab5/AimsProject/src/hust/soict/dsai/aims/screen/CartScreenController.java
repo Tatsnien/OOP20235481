@@ -1,8 +1,14 @@
 package hust.soict.dsai.aims.screen;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
+import javax.swing.JFrame;
+
 import hust.soict.dsai.aims.cart.Cart;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
+import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -15,6 +21,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class CartScreenController {
 	
 	private Cart cart;
+	private CartScreen cartFrame;
+	
+	@FXML
+	private Label lbTotalCost;
 	
 	@FXML
     private Button btnPlay;
@@ -44,8 +54,9 @@ public class CartScreenController {
 	@FXML
 	private TableColumn<Media, Float> colMediaCost;
 	
-	public CartScreenController(Cart cart) {
+	public CartScreenController(CartScreen cartFrame, Cart cart) {
 		super();
+		this.cartFrame = cartFrame;
 		this.cart = cart;
 	}
 	
@@ -85,6 +96,8 @@ public class CartScreenController {
 				showFilteredMedia(newValue);
 			}
 		});
+
+		lbTotalCost.textProperty().bind(Bindings.format("$%.2f", cart.totalCostProperty()));
 	}
 
 	void updateButtonBar(Media media) {
@@ -108,6 +121,24 @@ public class CartScreenController {
 		else
 			filteredList = cart.searchByTitle(newValue);
 		tblMedia.setItems(filteredList);
+	}
+	
+	@FXML
+	void btnPlaceOrderPressed(ActionEvent event) {
+		new PlaceOrderDialog(cartFrame, cart);
+		cart.clear();
+	}
+	
+	@FXML
+	void btnPlayPressed(ActionEvent event) {
+		new PlayDialog(cartFrame, tblMedia.getSelectionModel().getSelectedItem());
+	}
+	
+	@FXML
+	void btnViewStorePressed(ActionEvent event) {
+		System.out.println("Click: View Store");
+		this.cartFrame.setVisible(false);
+		new StoreScreen();
 	}
 	
 }

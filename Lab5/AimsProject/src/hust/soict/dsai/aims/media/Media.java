@@ -61,7 +61,7 @@ public abstract class Media {
 		}
 	}
 	
-	public boolean isMatchByID(String id) {
+	public boolean isMatchById(String id) {
 		String s1 = Integer.toString(this.id);
 		String s2 = id;
 		for (int i = 0; i < s1.length(); ++i)

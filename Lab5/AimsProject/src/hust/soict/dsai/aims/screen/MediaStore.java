@@ -3,13 +3,14 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import hust.soict.dsai.aims.media.*;
+import javafx.application.Platform;
 import hust.soict.dsai.aims.cart.*;
 
 public class MediaStore extends JPanel{
 	private Media media;
 	private Cart cart;
 	
-	public MediaStore(JFrame frame, Media media, Cart cart) {
+	public MediaStore(StoreScreen storeFrame, Media media, Cart cart) {
 		this.media = media;
 		this.cart = cart;
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -24,9 +25,9 @@ public class MediaStore extends JPanel{
 		JPanel container = new JPanel();
 		container.setLayout(new FlowLayout(FlowLayout.CENTER));
 		
-		container.add(setAddToCart(frame));
+		container.add(setAddToCart(storeFrame));
 		if (media instanceof Playable) 
-			container.add(setPlayButton(frame));
+			container.add(setPlayButton(storeFrame));
 		
 		this.add(Box.createVerticalGlue());
 		this.add(title);
@@ -37,24 +38,26 @@ public class MediaStore extends JPanel{
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 	}
 	
-	private JButton setPlayButton(JFrame frame) {
+	private JButton setPlayButton(StoreScreen storeFrame) {
 		JButton playButton = new JButton("Play");
 		playButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new PlayDialog(frame, media);
+				new PlayDialog(storeFrame, media);
 			}
 		});
 		return playButton;
 	}
 	
-	private JButton setAddToCart(JFrame frame) {
+	private JButton setAddToCart(StoreScreen storeFrame) {
 		JButton addToCartButton = new JButton("Add to cart");
 		addToCartButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new AddToCartDialog(frame, media);
-				cart.addMedia(media);
+				try {
+					new AddToCartDialog(storeFrame, media);
+					cart.addMedia(media);
+				} catch (Exception err) {};
 			}
 		});
 		return addToCartButton;

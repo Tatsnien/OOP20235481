@@ -275,12 +275,11 @@ public class Aims {
 			
 			if (option == 1) {
 				System.out.println("ID: ");
-				cart.search(scanner.nextInt());
-				scanner.nextLine();
+				cart.searchById(scanner.nextLine());
 			}
 			else if (option == 2) {
 				System.out.println("Title: ");
-				cart.search(scanner.nextLine());
+				cart.searchByTitle(scanner.nextLine());
 			}
 				
 		}

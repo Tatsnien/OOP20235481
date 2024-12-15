@@ -10,12 +10,29 @@ import hust.soict.dsai.aims.cart.*;
 import hust.soict.dsai.aims.media.*;
 
 public class StoreScreen extends JFrame {
-	private Store store;
-	private Cart cart;
+	private static Store store;
+	private static Cart cart;
+	private StoreScreen storeFrame;
 	
-	public StoreScreen(Store store) {
-		this.cart = new Cart();
-		this.store = store;
+	public StoreScreen() {
+		this.storeFrame = this;
+		
+		Container cp = getContentPane();
+		cp.setLayout(new BorderLayout());
+		
+		cp.add(createNorth(), BorderLayout.NORTH);
+		cp.add(createCenter(), BorderLayout.CENTER);
+		
+		setVisible(true);
+		setTitle("Store");
+		setSize(1024, 768);
+	}
+	
+	public StoreScreen(Store newStore) {
+		cart = new Cart();
+		store = newStore;
+		this.storeFrame = this;
+		
 		Container cp = getContentPane();
 		cp.setLayout(new BorderLayout());
 		
@@ -49,7 +66,8 @@ public class StoreScreen extends JFrame {
 		cartButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new CartScreen(cart);
+				storeFrame.setVisible(false);
+				new CartScreen(cart);			
 			}
 		});
 		menu.add(cartButton);
@@ -73,6 +91,7 @@ public class StoreScreen extends JFrame {
 		cartButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				storeFrame.setVisible(false);
 				new CartScreen(cart);
 			}
 		});
@@ -96,7 +115,7 @@ public class StoreScreen extends JFrame {
 		for (int i = 0; i < 9; ++i) {
 			if (i >= mediaInStore.size())
 				break;
-			MediaStore cell = new MediaStore(this, mediaInStore.get(i), cart);
+			MediaStore cell = new MediaStore(storeFrame, mediaInStore.get(i), cart);
 			center.add(cell);
 		}
 		
